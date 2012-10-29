@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using SportsStore.WebUI.Infrastructure;
+using SportsStore.WebUI.Binders;
+using SportsStore.Domain.Entities;
 
 namespace SportsStore.WebUI
 {
@@ -22,17 +24,30 @@ namespace SportsStore.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(null,
-                "{controller}/{action}/Page{page}", // URL with parameters
-                new { controller = "Product", action = "List" }
-                );
+            routes.MapRoute(null,   // Matches /
+                            "",
+                            new { controller = "Product", action = "List",
+                                  category = (String) null, page = 1
+                            });
 
-            routes.MapRoute(
-                "Default", // Route name
-                "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Product", action = "List", id = UrlParameter.Optional } // Parameter defaults
+            routes.MapRoute(null,
+                "Page{page}", // URL with parameters, matches /Page2, Page123, but not /PageABC
+                new { controller = "Product", action = "List", category = (String) null },
+                new { page = @"\d+" } // constraints: page must be numerical
             );
 
+            routes.MapRoute(null,
+                "{category}", // matches Football or /AnythingWithNoSlash
+                new { controller = "Product", action = "List", page = 1 }
+            );
+
+            routes.MapRoute(null,
+                "{category}/Page{page}", // matches Football/Page876
+                new { controller = "Product", action = "List" },
+                new { page = @"\d+" } // constraints: page must be numerical
+            );
+
+            routes.MapRoute(null, "{controller}/{action}");
         }
 
         protected void Application_Start()
@@ -43,6 +58,7 @@ namespace SportsStore.WebUI
             RegisterRoutes(RouteTable.Routes);
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+            ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder());
         }
     }
 }
