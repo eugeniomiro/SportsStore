@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SportsStore.Domain.Entities.Product>
+﻿@model SportsStore.WebUI.Models.ProductsListViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -15,7 +15,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Products) {
     <tr>
         <td>@item.ProductID</td>
         <td>@Html.ActionLink(item.Name, "Edit", new { item.ProductID })</td>
@@ -27,6 +27,9 @@
     </tr>
 }
 </table>
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", "Admin"))
+</div>
 <p>
     @Html.ActionLink("Add a new product", "Create")
 </p>

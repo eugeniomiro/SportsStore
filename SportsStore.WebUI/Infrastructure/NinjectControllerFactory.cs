@@ -10,6 +10,8 @@ using SportsStore.Domain.Abstract;
 using SportsStore.Domain.Entities;
 using SportsStore.Domain.Concrete;
 using System.Configuration;
+using SportsStore.WebUI.Infrastructure.Abstract;
+using SportsStore.WebUI.Infrastructure.Concrete;
 
 namespace SportsStore.WebUI.Infrastructure
 {
@@ -47,6 +49,7 @@ namespace SportsStore.WebUI.Infrastructure
             };
             
             _ninjectKernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", settings);
+            _ninjectKernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
 
             // put additional bindings here
 

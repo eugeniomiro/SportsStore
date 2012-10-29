@@ -7,8 +7,20 @@
 
 <h2>Edit @Model.Name</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Save", "Admin", FormMethod.Post, new { encType = "multipart/form-data" })) {
+    
     @Html.EditorForModel()
+
+    <div class="editor-label">Image</div>
+    <div class="editor-field">
+        @if (Model.ImageData == null) {
+            @:None
+        } else {
+            <img width="150" height="150" 
+                 src="@Url.Action("GetImage", "Product", new { Model.ProductID })" />
+        }
+        <div>Upload new Image <input type="file" name="image" /></div>
+    </div>
     <input type="submit" value="Save" />
     @Html.ActionLink("Cancel and return to list", "Index")
 }

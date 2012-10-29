@@ -64,6 +64,14 @@
     <Compile Include="Migrations\201210121251494_StringLengthsAdded.Designer.cs">
       <DependentUpon>201210121251494_StringLengthsAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201210221149063_AddedRestrictionsToProduct.cs" />
+    <Compile Include="Migrations\201210221149063_AddedRestrictionsToProduct.Designer.cs">
+      <DependentUpon>201210221149063_AddedRestrictionsToProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201210221329503_AddedImageToProduct.cs" />
+    <Compile Include="Migrations\201210221329503_AddedImageToProduct.Designer.cs">
+      <DependentUpon>201210221329503_AddedImageToProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,6 +85,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201210121251494_StringLengthsAdded.resx">
       <DependentUpon>201210121251494_StringLengthsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201210221149063_AddedRestrictionsToProduct.resx">
+      <DependentUpon>201210221149063_AddedRestrictionsToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201210221329503_AddedImageToProduct.resx">
+      <DependentUpon>201210221329503_AddedImageToProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

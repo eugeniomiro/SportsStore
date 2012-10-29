@@ -1,24 +1,21 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="IProductRepository.cs" company="">
+// <copyright file="IAuthProvider.cs" company="">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace SportsStore.Domain.Abstract
+namespace SportsStore.WebUI.Infrastructure.Abstract
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using SportsStore.Domain.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public interface IProductRepository
+    public interface IAuthProvider
     {
-        IQueryable<Product> Products { get; }
-        void SaveProduct(Product product);
-        void DeleteProduct(Product product);
+        Boolean Authenticate(String username, String password);
     }
 }

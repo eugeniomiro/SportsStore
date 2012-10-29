@@ -37,6 +37,16 @@ namespace SportsStore.WebUI
             );
 
             routes.MapRoute(null,
+                    "Admin",
+                    new { controller = "Admin", action = "Index" }
+                );
+
+            routes.MapRoute(null, 
+                "Admin/Page{page}",
+                new { controller = "Admin", action = "Index" }
+            );
+
+            routes.MapRoute(null,
                 "{category}", // matches Football or /AnythingWithNoSlash
                 new { controller = "Product", action = "List", page = 1 }
             );

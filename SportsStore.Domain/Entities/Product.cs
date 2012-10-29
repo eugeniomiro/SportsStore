@@ -22,15 +22,25 @@ namespace SportsStore.Domain.Entities
         public Int32 ProductID { get; set; }
         
         [StringLength(100)]
-        [Required]
+        [Required(ErrorMessage = "Please enter a product name")]
         public String Name { get; set; }
 
         [DataType(DataType.MultilineText)]
         [StringLength(500)]
+        [Required(ErrorMessage = "Please enter a description")]
         public String Description { get; set; }
+
+        [Required(ErrorMessage = "Please enter a price")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Please enter a positive price")]
         public decimal Price { get; set; }
         
+        [Required(ErrorMessage = "Please specify a category")]
         [StringLength(50)]
         public String Category { get; set; }
+
+        public Byte[] ImageData { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public String ImageMimeType { get; set; }
     }
 }
