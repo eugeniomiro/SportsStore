@@ -19,9 +19,12 @@ namespace SportsStore.Domain.Entities
     {
         public Int32 ProductID { get; set; }
         [StringLength(100)]
+        [Required]
         public String Name { get; set; }
+        [StringLength(500)]
         public String Description { get; set; }
         public decimal Price { get; set; }
+        [StringLength(50)]
         public String Category { get; set; }
     }
 }

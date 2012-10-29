@@ -49,13 +49,13 @@
     <Compile Include="Concrete\EfDbContext.cs" />
     <Compile Include="Concrete\EFProductRepository.cs" />
     <Compile Include="Entities\Product.cs" />
-    <Compile Include="Migrations\201210101555474_InitialCreate.cs" />
-    <Compile Include="Migrations\201210101555474_InitialCreate.Designer.cs">
-      <DependentUpon>201210101555474_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201210121234147_InitialCreate.cs" />
+    <Compile Include="Migrations\201210121234147_InitialCreate.Designer.cs">
+      <DependentUpon>201210121234147_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201210101605175_StringLengthAdded.cs" />
-    <Compile Include="Migrations\201210101605175_StringLengthAdded.Designer.cs">
-      <DependentUpon>201210101605175_StringLengthAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201210121251494_StringLengthsAdded.cs" />
+    <Compile Include="Migrations\201210121251494_StringLengthsAdded.Designer.cs">
+      <DependentUpon>201210121251494_StringLengthsAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,11 +65,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201210101555474_InitialCreate.resx">
-      <DependentUpon>201210101555474_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201210121234147_InitialCreate.resx">
+      <DependentUpon>201210121234147_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201210101605175_StringLengthAdded.resx">
-      <DependentUpon>201210101605175_StringLengthAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201210121251494_StringLengthsAdded.resx">
+      <DependentUpon>201210121251494_StringLengthsAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
