@@ -1,3 +1,81 @@
+body
+{
+    font-size: .85em;
+    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header,
+footer,
+nav,
+section {
+    display: block;
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+
+fieldset 
+{
+    border:1px solid #ddd;
+    padding:0 1.4em 1.4em 1.4em;
+    margin:0 0 1.5em 0;
+}
+
+legend 
+{
+    font-size:1.2em;
+    font-weight: bold;
+}
+
+textarea 
+{
+    min-height: 75px;
+}
+
+.editor-label 
+{
+    margin: 1em 0 0 0;
+}
+
+.editor-field 
+{
+    margin:0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+
+
 body {
     font-family: Cambria, Georgia, "Times New Roman"; 
     margin: 0;
@@ -91,18 +169,34 @@ DIV.item INPUT {
     cursor:pointer;
 }
 H2 { 
-	margin-top: 0.3em 
+    margin-top: 0.3em 
 }
 TFOOT TD { 
-	border-top: 1px dotted gray; 
-	font-weight: bold; 
+    border-top: 1px dotted gray; 
+    font-weight: bold; 
 }
 .actionButtons A, INPUT.actionButtons {
-	font: .8em Arial; 
-	color: White; 
-	margin: .5em;
-	text-decoration: none; 
-	padding: .15em 1.5em .2em 1.5em;
-	background-color: #353535; 
-	border: 1px solid black;
+    font: .8em Arial; 
+    color: White; 
+    margin: .5em;
+    text-decoration: none; 
+    padding: .15em 1.5em .2em 1.5em;
+    background-color: #353535; 
+    border: 1px solid black;
+}
+DIV#cart { 
+    float:right; 
+    margin: .8em; 
+    color: Silver;
+    background-color: #555; 
+    padding: .5em .5em .5em 1em; 
+}
+DIV#cart A { 
+    text-decoration: none; 
+    padding: .4em 1em .4em 1em; 
+    line-height:2.1em;
+    margin-left: .5em; 
+    background-color: #333; 
+    color:White; 
+    border: 1px solid black;
 }

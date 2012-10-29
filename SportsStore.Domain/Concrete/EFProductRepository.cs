@@ -11,6 +11,7 @@ namespace SportsStore.Domain.Concrete
     using System.Linq;
     using System.Text;
     using SportsStore.Domain.Abstract;
+    using SportsStore.Domain.Entities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -19,9 +20,19 @@ namespace SportsStore.Domain.Concrete
     {
         private EfDbContext context = new EfDbContext();
 
-        public IQueryable<Entities.Product> Products
+        public IQueryable<Product> Products
         {
             get { return context.Products; }
+        }
+
+        public void SaveProduct(Product product)
+        {
+            if (product.ProductID == 0) {
+                context.Products.Add(product);
+            } else {
+                context.Entry(product).State = System.Data.EntityState.Modified;
+            }
+            context.SaveChanges();
         }
     }
 }
