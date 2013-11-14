@@ -264,7 +264,7 @@ namespace SportsStore.UnitTests
             AdminController target = new AdminController(mock.Object);
 
             // Act
-            Product[] result = ((IEnumerable<Product>) target.Index().ViewData.Model).ToArray();
+            Product[] result = ((ProductsListViewModel)target.Index().ViewData.Model).Products.ToArray();
 
             // Assert
             Assert.AreEqual(3, result.Length);
