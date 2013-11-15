@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Ninject;
-using System.Web.Routing;
-using Moq;
-using SportsStore.Domain.Abstract;
-using SportsStore.Domain.Entities;
-using SportsStore.Domain.Concrete;
 using System.Configuration;
+using System.Web.Mvc;
+using System.Web.Routing;
+using Ninject;
+using SportsStore.Domain.Abstract;
+using SportsStore.Domain.Concrete;
 using SportsStore.WebUI.Infrastructure.Abstract;
 using SportsStore.WebUI.Infrastructure.Concrete;
 
