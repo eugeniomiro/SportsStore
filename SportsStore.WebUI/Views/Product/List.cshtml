@@ -4,6 +4,9 @@
     ViewBag.Title = "Products";
 }
 
+@if (ViewBag.EmptyStore) {
+    <h1>Store is empty!</h1>
+}
 @foreach (var p in Model.Products) {
     Html.RenderPartial("ProductSummary", p);
 }

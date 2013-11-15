@@ -19,6 +19,8 @@ namespace SportsStore.WebUI.Controllers
 
         public ViewResult List(String category, Int32 page = 1)
         {
+            ViewBag.EmptyStore = _repository.Products.Count() == 0;
+
             var selectedProducts = _repository.Products.Where(p => category == null || p.Category == category);
 
             ProductsListViewModel viewModel = new ProductsListViewModel {
