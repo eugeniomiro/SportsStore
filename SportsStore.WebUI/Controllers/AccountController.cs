@@ -59,10 +59,10 @@ namespace SportsStore.WebUI.Controllers
                 var user = new ApplicationUser() { UserName = model.UserName };
                 var result = _authProvider.RegisterUser(user, model.Password);
                 if (result != null && result.Count() == 0) {
-                    return RedirectToAction("Index", "Home");
+                    return Redirect("/");
                 }
                 foreach (var error in result) {
-                    ModelState.AddModelError(error, error);
+                    ModelState.AddModelError("", error);
                 }
             }
             return View(model);
