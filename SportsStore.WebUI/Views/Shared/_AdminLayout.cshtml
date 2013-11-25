@@ -3,9 +3,9 @@
 <html>
 <head>
     <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Content/admin.css")" rel="Stylesheet" type="text/css" />
-    <script src="@Url.Content("~/bundles/jquery")" type="text/javascript"></script>
-    <script src="@Url.Content("~/bundles/jqueryval")" type="text/javascript"></script>
+    @Styles.Render("~/admin/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>

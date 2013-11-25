@@ -25,7 +25,7 @@ namespace SportsStore.WebUI
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/admin.css").Include(
+            bundles.Add(new StyleBundle("~/admin/Content/css").Include(
                       "~/Content/Admin.css"));
         }
     }
