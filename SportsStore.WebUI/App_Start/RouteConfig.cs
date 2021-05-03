@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace SportsStore.WebUI
@@ -15,16 +11,17 @@ namespace SportsStore.WebUI
 
             routes.MapRoute(null,   // Matches /
                             "",
-                            new {
+                            new
+                            {
                                 controller = "Product",
                                 action = "List",
-                                category = (String) null,
+                                category = (string)null,
                                 page = 1
                             });
 
             routes.MapRoute(null,
                 "Page{page}", // URL with parameters, matches /Page2, Page123, but not /PageABC
-                new { controller = "Product", action = "List", category = (String) null },
+                new { controller = "Product", action = "List", category = (string)null },
                 new { page = @"\d+" } // constraints: page must be numerical
             );
 

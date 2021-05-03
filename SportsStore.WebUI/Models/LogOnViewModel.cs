@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SportsStore.WebUI.Models
 {
@@ -7,13 +6,13 @@ namespace SportsStore.WebUI.Models
     {
         [Required]
         [Display(Name = "User name")]
-        public String UserName { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        public String Password { get; set; }
+        public string Password { get; set; }
 
         [Display(Name = "Remember me")]
-        public Boolean RememberMe { get; set; }
+        public bool RememberMe { get; set; }
     }
 }

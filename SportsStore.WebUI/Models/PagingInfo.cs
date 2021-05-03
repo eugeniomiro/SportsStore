@@ -4,12 +4,10 @@ namespace SportsStore.WebUI.Models
 {
     public class PagingInfo
     {
-        public Int32 TotalItems { get; set; }
-        public Int32 ItemsPerPage { get; set; }
-        public Int32 CurrentPage { get; set; }
+        public int TotalItems { get; set; }
+        public int ItemsPerPage { get; set; }
+        public int CurrentPage { get; set; }
 
-        public Int32 TotalPages {
-            get { return (Int32) Math.Ceiling((decimal) TotalItems / ItemsPerPage); }
-        }
+        public int TotalPages => (int)Math.Ceiling((decimal)TotalItems / ItemsPerPage);
     }
 }

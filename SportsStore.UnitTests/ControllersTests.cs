@@ -1,15 +1,13 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SportsStore.Domain.Abstract;
 using SportsStore.Domain.Entities;
 using SportsStore.WebUI.Controllers;
-using SportsStore.WebUI.Models;
-using System.Web.Mvc;
 using SportsStore.WebUI.Infrastructure.Abstract;
+using SportsStore.WebUI.Models;
 
 namespace SportsStore.UnitTests
 {
@@ -21,7 +19,7 @@ namespace SportsStore.UnitTests
         {
             // Arrange
             // - Create the mock repository
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(
                 new Product[] {
                     new Product { ProductID = 1, Name = "P1" },
@@ -31,14 +29,16 @@ namespace SportsStore.UnitTests
                     new Product { ProductID = 5, Name = "P5" },
                 }.AsQueryable());
             //  create a controller and make the page size = 3 items
-            ProductController controller = new ProductController(mock.Object);
-            controller._pageSize = 3;
+            var controller = new ProductController(mock.Object)
+            {
+                _pageSize = 3
+            };
 
             // Action
-            ProductsListViewModel result = (ProductsListViewModel) controller.List(null, 2).Model;
+            var result = (ProductsListViewModel)controller.List(null, 2).Model;
 
             // Assert
-            Product[] productArray = result.Products.ToArray();
+            var productArray = result.Products.ToArray();
             Assert.IsTrue(productArray.Length == 2);
             Assert.AreEqual("P4", productArray[0].Name);
             Assert.AreEqual("P5", productArray[1].Name);
@@ -48,7 +48,7 @@ namespace SportsStore.UnitTests
         public void Can_Send_Pagination_View_Model()
         {
             // - Create the mock repository
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(
                 new Product[] {
                     new Product { ProductID = 1, Name = "P1" },
@@ -59,14 +59,16 @@ namespace SportsStore.UnitTests
                 }.AsQueryable());
 
             //  create a controller and make the page size = 3 items
-            ProductController controller = new ProductController(mock.Object);
-            controller._pageSize = 3;
+            var controller = new ProductController(mock.Object)
+            {
+                _pageSize = 3
+            };
 
             // Act
-            ProductsListViewModel result = (ProductsListViewModel) controller.List(null, 2).Model;
+            var result = (ProductsListViewModel)controller.List(null, 2).Model;
 
             // Assert
-            PagingInfo pageInfo = result.PagingInfo;
+            var pageInfo = result.PagingInfo;
 
             Assert.AreEqual(2, pageInfo.CurrentPage);
             Assert.AreEqual(3, pageInfo.ItemsPerPage);
@@ -79,7 +81,7 @@ namespace SportsStore.UnitTests
         {
             // Arrange
             // - Create the mock repository
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(
                 new Product[] {
                     new Product { ProductID = 1, Name = "P1", Category = "Cat1" },
@@ -90,11 +92,13 @@ namespace SportsStore.UnitTests
                 }.AsQueryable());
 
             //  create a controller and make the page size = 3 items
-            ProductController controller = new ProductController(mock.Object);
-            controller._pageSize = 3;
+            var controller = new ProductController(mock.Object)
+            {
+                _pageSize = 3
+            };
 
             // Action
-            Product[] result = ((ProductsListViewModel) controller.List("Cat2", 1).Model).Products.ToArray();
+            var result = ((ProductsListViewModel)controller.List("Cat2", 1).Model).Products.ToArray();
 
             // Assert
             Assert.AreEqual(2, result.Length);
@@ -107,7 +111,7 @@ namespace SportsStore.UnitTests
         {
             // Arrange
             // - Create the mock repository
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(
                 new Product[] {
                     new Product { ProductID = 1, Name = "P1", Category = "Apples" },
@@ -116,10 +120,10 @@ namespace SportsStore.UnitTests
                     new Product { ProductID = 4, Name = "P4", Category = "Oranges" },
                 }.AsQueryable());
 
-            NavController target = new NavController(mock.Object);
+            var target = new NavController(mock.Object);
 
             // Act
-            String[] results = ((IEnumerable<String>) target.Menu().Model).ToArray();
+            var results = ((IEnumerable<string>)target.Menu().Model).ToArray();
 
             // Assert
             Assert.AreEqual(3, results.Length);
@@ -133,16 +137,16 @@ namespace SportsStore.UnitTests
         {
             // Arrange
             // - Create the mock repository
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(
                 new Product[] {
                     new Product { ProductID = 1, Name = "P1", Category = "Apples" },
                     new Product { ProductID = 4, Name = "P2", Category = "Oranges" },
                 }.AsQueryable());
 
-            NavController target = new NavController(mock.Object);
+            var target = new NavController(mock.Object);
 
-            String categoryToSelect = "Apples";
+            var categoryToSelect = "Apples";
 
             // Act
             string result = target.Menu(categoryToSelect).ViewBag.SelectedCategory;
@@ -156,7 +160,7 @@ namespace SportsStore.UnitTests
         {
             // Arrange
             // - Create the mock repository
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(
                 new Product[] {
                     new Product { ProductID = 1, Name = "P1", Category = "Cat1" },
@@ -166,14 +170,16 @@ namespace SportsStore.UnitTests
                     new Product { ProductID = 5, Name = "P5", Category = "Cat3" },
                 }.AsQueryable());
 
-            ProductController target = new ProductController(mock.Object);
-            target._pageSize = 3;
+            var target = new ProductController(mock.Object)
+            {
+                _pageSize = 3
+            };
 
             // Act
-            Int32 res1 = ((ProductsListViewModel) target.List("Cat1").Model).PagingInfo.TotalItems;
-            Int32 res2 = ((ProductsListViewModel) target.List("Cat2").Model).PagingInfo.TotalItems;
-            Int32 res3 = ((ProductsListViewModel) target.List("Cat3").Model).PagingInfo.TotalItems;
-            Int32 resAll = ((ProductsListViewModel) target.List(null).Model).PagingInfo.TotalItems;
+            var res1 = ((ProductsListViewModel)target.List("Cat1").Model).PagingInfo.TotalItems;
+            var res2 = ((ProductsListViewModel)target.List("Cat2").Model).PagingInfo.TotalItems;
+            var res3 = ((ProductsListViewModel)target.List("Cat3").Model).PagingInfo.TotalItems;
+            var resAll = ((ProductsListViewModel)target.List(null).Model).PagingInfo.TotalItems;
 
             // Assert
             Assert.AreEqual(2, res1);
@@ -186,13 +192,13 @@ namespace SportsStore.UnitTests
         public void Cannot_Checkout_Empty_Cart()
         {
             // Arrange
-            Mock<IOrderProcessor> mock = new Mock<IOrderProcessor>();
-            Cart cart = new Cart();
-            ShippingDetails shippingDetails = new ShippingDetails();
-            CartController  target = new CartController(null, mock.Object);
+            var mock = new Mock<IOrderProcessor>();
+            var cart = new Cart();
+            var shippingDetails = new ShippingDetails();
+            var target = new CartController(null, mock.Object);
 
             // Act
-            ViewResult result = target.Checkout(cart, shippingDetails);
+            var result = target.Checkout(cart, shippingDetails);
 
             // Assert
             mock.Verify(m => m.ProcessOrder(It.IsAny<Cart>(),
@@ -206,17 +212,17 @@ namespace SportsStore.UnitTests
         public void Cannot_Checkout_Invalid_ShippingDetails()
         {
             // Arrange
-            Mock<IOrderProcessor> mock = new Mock<IOrderProcessor>();
-            Cart cart = new Cart();
+            var mock = new Mock<IOrderProcessor>();
+            var cart = new Cart();
             cart.AddItem(new Product(), 1);
 
-            ShippingDetails shippingDetails = new ShippingDetails();
-            CartController  target = new CartController(null, mock.Object);
+            var shippingDetails = new ShippingDetails();
+            var target = new CartController(null, mock.Object);
 
             target.ModelState.AddModelError("error", "error");
 
             // Act
-            ViewResult result = target.Checkout(cart, shippingDetails);
+            var result = target.Checkout(cart, shippingDetails);
 
             // Assert
             mock.Verify(m => m.ProcessOrder(It.IsAny<Cart>(),
@@ -230,15 +236,15 @@ namespace SportsStore.UnitTests
         public void Can_Checkout_And_Submit_Order()
         {
             // Arrange
-            Mock<IOrderProcessor> mock = new Mock<IOrderProcessor>();
-            Cart cart = new Cart();
+            var mock = new Mock<IOrderProcessor>();
+            var cart = new Cart();
             cart.AddItem(new Product(), 1);
 
-            ShippingDetails shippingDetails = new ShippingDetails();
-            CartController  target = new CartController(null, mock.Object);
+            var shippingDetails = new ShippingDetails();
+            var target = new CartController(null, mock.Object);
 
             // Act
-            ViewResult result = target.Checkout(cart, shippingDetails);
+            var result = target.Checkout(cart, shippingDetails);
 
             // Assert
             mock.Verify(m => m.ProcessOrder(It.IsAny<Cart>(),
@@ -253,7 +259,7 @@ namespace SportsStore.UnitTests
         {
             // Arrange
             // - Create the mock repository
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(
                 new Product[] {
                     new Product { ProductID = 1, Name = "P1" },
@@ -261,10 +267,10 @@ namespace SportsStore.UnitTests
                     new Product { ProductID = 3, Name = "P3" },
                 }.AsQueryable());
 
-            AdminController target = new AdminController(mock.Object);
+            var target = new AdminController(mock.Object);
 
             // Act
-            Product[] result = ((ProductsListViewModel)target.Index().ViewData.Model).Products.ToArray();
+            var result = ((ProductsListViewModel)target.Index().ViewData.Model).Products.ToArray();
 
             // Assert
             Assert.AreEqual(3, result.Length);
@@ -278,7 +284,7 @@ namespace SportsStore.UnitTests
         {
             // Arrange
             // - Create the mock repository
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(
                 new Product[] {
                     new Product { ProductID = 1, Name = "P1" },
@@ -286,12 +292,12 @@ namespace SportsStore.UnitTests
                     new Product { ProductID = 3, Name = "P3" },
                 }.AsQueryable());
 
-            AdminController target = new AdminController(mock.Object);
+            var target = new AdminController(mock.Object);
 
             // Act
-            Product p1 = target.Edit(1).ViewData.Model as Product;
-            Product p2 = target.Edit(2).ViewData.Model as Product;
-            Product p3 = target.Edit(3).ViewData.Model as Product;
+            var p1 = target.Edit(1).ViewData.Model as Product;
+            var p2 = target.Edit(2).ViewData.Model as Product;
+            var p3 = target.Edit(3).ViewData.Model as Product;
 
             // Assert
             Assert.AreEqual(1, p1.ProductID);
@@ -304,7 +310,7 @@ namespace SportsStore.UnitTests
         {
             // Arrange
             // - Create the mock repository
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(
                 new Product[] {
                     new Product { ProductID = 1, Name = "P1" },
@@ -312,11 +318,11 @@ namespace SportsStore.UnitTests
                     new Product { ProductID = 3, Name = "P3" },
                 }.AsQueryable());
 
-            AdminController target = new AdminController(mock.Object);
+            var target = new AdminController(mock.Object);
 
             // Act
-            Product result = target.Edit(4).ViewData.Model as Product;
-            
+            var result = target.Edit(4).ViewData.Model as Product;
+
             // Assert
             Assert.IsNull(result);
         }
@@ -326,12 +332,12 @@ namespace SportsStore.UnitTests
         {
             // Arrange
             // - Create the mock repository
-            Mock<IProductRepository>    mock    = new Mock<IProductRepository>();
-            AdminController             target  = new AdminController(mock.Object);
-            Product                     product = new Product { Name = "Test" };
-            
+            var mock = new Mock<IProductRepository>();
+            var target = new AdminController(mock.Object);
+            var product = new Product { Name = "Test" };
+
             // Act
-            ActionResult    result = target.Save(product, null);
+            var result = target.Save(product, null);
 
             // Assert
             mock.Verify(m => m.SaveProduct(product));
@@ -343,13 +349,13 @@ namespace SportsStore.UnitTests
         {
             // Arrange
             // - Create the mock repository
-            Mock<IProductRepository>    mock    = new Mock<IProductRepository>();
-            AdminController             target  = new AdminController(mock.Object);
-            Product                     product = new Product { Name = "Test" };
+            var mock = new Mock<IProductRepository>();
+            var target = new AdminController(mock.Object);
+            var product = new Product { Name = "Test" };
             target.ModelState.AddModelError("error", "error");
 
             // Act
-            ActionResult    result = target.Save(product, null);
+            var result = target.Save(product, null);
 
             // Assert
             mock.Verify(m => m.SaveProduct(product), Times.Never());
@@ -361,18 +367,18 @@ namespace SportsStore.UnitTests
         {
             // Arrange
             // - Create the mock repository
-            Mock<IProductRepository>    mock    = new Mock<IProductRepository>();
-            AdminController             target  = new AdminController(mock.Object);
-            Product                     product = new Product { ProductID = 2, Name = "Test" };
+            var mock = new Mock<IProductRepository>();
+            var target = new AdminController(mock.Object);
+            var product = new Product { ProductID = 2, Name = "Test" };
 
-            mock.Setup(m => m.Products).Returns(new Product[] { 
+            mock.Setup(m => m.Products).Returns(new Product[] {
                 new Product { ProductID = 1, Name = "P1" },
-                product, 
+                product,
                 new Product { ProductID = 3, Name = "P3" }
             }.AsQueryable());
 
             // Act
-            ActionResult    result = target.Delete(product.ProductID);
+            var result = target.Delete(product.ProductID);
 
             // Assert
             mock.Verify(m => m.DeleteProduct(product));
@@ -384,17 +390,17 @@ namespace SportsStore.UnitTests
         {
             // Arrange
             // - Create the mock repository
-            Mock<IProductRepository>    mock    = new Mock<IProductRepository>();
-            AdminController             target  = new AdminController(mock.Object);
+            var mock = new Mock<IProductRepository>();
+            var target = new AdminController(mock.Object);
 
-            mock.Setup(m => m.Products).Returns(new Product[] { 
+            mock.Setup(m => m.Products).Returns(new Product[] {
                 new Product { ProductID = 1, Name = "P1" },
                 new Product { ProductID = 2, Name = "P2" },
                 new Product { ProductID = 3, Name = "P3" }
             }.AsQueryable());
 
             // Act
-            ActionResult    result = target.Delete(100);
+            var result = target.Delete(100);
 
             // Assert
             mock.Verify(m => m.DeleteProduct(It.IsAny<Product>()), Times.Never());
@@ -405,59 +411,62 @@ namespace SportsStore.UnitTests
         public void Can_Login_With_Valid_Credentials()
         {
             // Arrange
-            Mock<IAuthProvider> mock = new Mock<IAuthProvider>();
+            var mock = new Mock<IAuthProvider>();
             mock.Setup(m => m.Authenticate("admin", "secret")).Returns(true);
-            LogOnViewModel model = new LogOnViewModel { 
+            var model = new LogOnViewModel
+            {
                 UserName = "admin",
                 Password = "secret"
             };
-            AccountController target = new AccountController(mock.Object);
+            var target = new AccountController(mock.Object);
 
             // Act
-            ActionResult result = target.LogOn(model, "/MyUrl");
+            var result = target.LogOn(model, "/MyUrl");
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectResult));
-            Assert.AreEqual("/MyUrl", ((RedirectResult) result).Url);
+            Assert.AreEqual("/MyUrl", ((RedirectResult)result).Url);
         }
 
         [TestMethod]
         public void Cannot_Login_With_Invalid_Credentials()
         {
             // Arrange
-            Mock<IAuthProvider> mock = new Mock<IAuthProvider>();
+            var mock = new Mock<IAuthProvider>();
             mock.Setup(m => m.Authenticate("badUser", "badPassword")).Returns(false);
-            LogOnViewModel model = new LogOnViewModel {
+            var model = new LogOnViewModel
+            {
                 UserName = "badUser",
                 Password = "badPassword"
             };
-            AccountController target = new AccountController(mock.Object);
+            var target = new AccountController(mock.Object);
 
             // Act
-            ActionResult result = target.LogOn(model, "/MyUrl");
+            var result = target.LogOn(model, "/MyUrl");
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
-            Assert.IsFalse(((ViewResult) result).ViewData.ModelState.IsValid);
+            Assert.IsFalse(((ViewResult)result).ViewData.ModelState.IsValid);
         }
 
         [TestMethod]
         public void Can_Retrieve_Image_Data()
         {
             // Arrange
-            Product prod = new Product {
+            var prod = new Product
+            {
                 ProductID = 2,
                 Name = "Test",
-                ImageData = new Byte[] { },
+                ImageData = new byte[] { },
                 ImageMimeType = "image/png"
             };
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.Products).Returns(new Product[] { 
+            var mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[] {
                 new Product { ProductID = 1, Name = "P1" },
                 prod,
                 new Product { ProductID = 3, Name = "P3" },
             }.AsQueryable());
-            ProductController target = new ProductController(mock.Object);
+            var target = new ProductController(mock.Object);
 
             // Act
             ActionResult result = target.GetImage(2);
@@ -465,19 +474,19 @@ namespace SportsStore.UnitTests
             // Assert
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(FileResult));
-            Assert.AreEqual(prod.ImageMimeType, ((FileResult) result).ContentType);
+            Assert.AreEqual(prod.ImageMimeType, ((FileResult)result).ContentType);
         }
 
         [TestMethod]
         public void Cannot_Retrieve_Image_Data_For_Invalid_ID()
         {
             // Arrange
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.Products).Returns(new Product[] { 
+            var mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[] {
                 new Product { ProductID = 1, Name = "P1" },
                 new Product { ProductID = 2, Name = "P2" },
             }.AsQueryable());
-            ProductController target = new ProductController(mock.Object);
+            var target = new ProductController(mock.Object);
 
             // Act
             ActionResult result = target.GetImage(100);

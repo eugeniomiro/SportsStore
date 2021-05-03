@@ -6,27 +6,29 @@
 
 namespace SportsStore.Domain.Entities
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class Cart
     {
-        private List<CartLine> lineCollection = new List<CartLine>();
+        private readonly List<CartLine> lineCollection = new List<CartLine>();
 
-        public void AddItem(Product product, Int32 quantity)
+        public void AddItem(Product product, int quantity)
         {
-            CartLine line = lineCollection
+            var line = lineCollection
                                 .Where(p => p.Product.ProductID == product.ProductID)
                                 .FirstOrDefault();
             if (line == null)
+            {
                 lineCollection.Add(new CartLine { Product = product, Quantity = quantity });
+            }
             else
+            {
                 line.Quantity += quantity;
+            }
         }
 
         public void RemoveLine(Product product)
@@ -34,7 +36,7 @@ namespace SportsStore.Domain.Entities
             lineCollection.RemoveAll(l => l.Product.ProductID == product.ProductID);
         }
 
-        public Decimal ComputeTotalValue()
+        public decimal ComputeTotalValue()
         {
             return lineCollection.Sum(e => e.Product.Price * e.Quantity);
         }
@@ -44,9 +46,6 @@ namespace SportsStore.Domain.Entities
             lineCollection.Clear();
         }
 
-        public IEnumerable<CartLine> Lines
-        {
-            get { return lineCollection; }
-        }
+        public IEnumerable<CartLine> Lines => lineCollection;
     }
 }

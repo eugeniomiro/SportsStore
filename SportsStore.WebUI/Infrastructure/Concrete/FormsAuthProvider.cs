@@ -16,7 +16,8 @@ namespace SportsStore.WebUI.Infrastructure.Concrete
         public bool Authenticate(string username, string password)
         {
             var user = UserManager.FindAsync(username, password).Result;
-            if (user != null) {
+            if (user != null)
+            {
                 FormsAuthentication.SetAuthCookie(username, false);
                 return true;
             }
@@ -24,11 +25,12 @@ namespace SportsStore.WebUI.Infrastructure.Concrete
         }
 
 
-        public IEnumerable<string> RegisterUser(ApplicationUser user, String password)
+        public IEnumerable<string> RegisterUser(ApplicationUser user, string password)
         {
-            List<String> errors = new List<string>();
+            var errors = new List<string>();
             var result = UserManager.CreateAsync(user, password).Result;
-            if (!result.Succeeded) {
+            if (!result.Succeeded)
+            {
                 errors.AddRange(result.Errors);
             }
             return errors;
@@ -37,7 +39,9 @@ namespace SportsStore.WebUI.Infrastructure.Concrete
         public void Dispose()
         {
             if (UserManager != null)
+            {
                 UserManager.Dispose();
+            }
         }
     }
 }

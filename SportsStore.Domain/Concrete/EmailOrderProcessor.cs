@@ -6,20 +6,17 @@
 
 namespace SportsStore.Domain.Concrete
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    using System.Net;
+    using System.Net.Mail;
     using System.Text;
     using SportsStore.Domain.Abstract;
-    using System.Net.Mail;
-    using System.Net;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class EmailOrderProcessor: IOrderProcessor
+    public class EmailOrderProcessor : IOrderProcessor
     {
-        private  EmailSettings _settings;
+        private readonly EmailSettings _settings;
 
         public EmailOrderProcessor(EmailSettings settings)
         {
@@ -28,24 +25,27 @@ namespace SportsStore.Domain.Concrete
 
         public void ProcessOrder(Entities.Cart cart, Entities.ShippingDetails shippingInfo)
         {
-            using (SmtpClient smtpClient = new SmtpClient()) {
+            using (var smtpClient = new SmtpClient())
+            {
                 smtpClient.EnableSsl = _settings.UseSsl;
                 smtpClient.Host = _settings.ServerName;
                 smtpClient.Port = _settings.ServerPort;
                 smtpClient.UseDefaultCredentials = false;
                 smtpClient.Credentials
                 = new NetworkCredential(_settings.Username, _settings.Password);
-                if (_settings.WriteAsFile) {
+                if (_settings.WriteAsFile)
+                {
                     smtpClient.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
                     smtpClient.PickupDirectoryLocation = _settings.FileLocation;
                     smtpClient.EnableSsl = false;
                 }
-                StringBuilder body = new StringBuilder()
+                var body = new StringBuilder()
                 .AppendLine("A new order has been submitted")
                 .AppendLine("---")
                 .AppendLine("Items:");
 
-                foreach (var line in cart.Lines) {
+                foreach (var line in cart.Lines)
+                {
                     var subtotal = line.Product.Price * line.Quantity;
                     body.AppendFormat("{0} x {1} (subtotal: {2:c}", line.Quantity,
                     line.Product.Name,
@@ -64,12 +64,13 @@ namespace SportsStore.Domain.Concrete
                 .AppendLine(shippingInfo.Zip)
                 .AppendLine("---")
                 .AppendFormat("Gift wrap: {0}", shippingInfo.GiftWrap ? "Yes" : "No");
-                MailMessage mailMessage = new MailMessage(
+                var mailMessage = new MailMessage(
                 _settings.MailFromAddress, // From
                 _settings.MailToAddress, // To
                 "New order submitted!", // Subject
                 body.ToString()); // Body
-                if (_settings.WriteAsFile) {
+                if (_settings.WriteAsFile)
+                {
                     mailMessage.BodyEncoding = Encoding.ASCII;
                 }
                 smtpClient.Send(mailMessage);

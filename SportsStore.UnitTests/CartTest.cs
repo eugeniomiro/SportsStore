@@ -1,8 +1,6 @@
-﻿using SportsStore.Domain.Entities;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Linq;
-using System.Collections.Generic;
+using SportsStore.Domain.Entities;
 
 namespace SportsStore.UnitTests
 {
@@ -13,15 +11,15 @@ namespace SportsStore.UnitTests
         public void Can_Add_New_Lines()
         {
             // Arrange
-            Product p1 = new Product { ProductID = 1, Name = "P1" };
-            Product p2 = new Product { ProductID = 2, Name = "P2" };
+            var p1 = new Product { ProductID = 1, Name = "P1" };
+            var p2 = new Product { ProductID = 2, Name = "P2" };
 
-            Cart target = new Cart();
+            var target = new Cart();
 
             // Act
             target.AddItem(p1, 1);
             target.AddItem(p2, 1);
-            CartLine[]  results = target.Lines.ToArray();
+            var results = target.Lines.ToArray();
 
             // Assert
             Assert.AreEqual(2, results.Length);
@@ -33,16 +31,16 @@ namespace SportsStore.UnitTests
         public void Can_Add_Quantity_For_Existing_Line()
         {
             // Arrange
-            Product p1 = new Product { ProductID = 1, Name = "P1" };
-            Product p2 = new Product { ProductID = 2, Name = "P2" };
+            var p1 = new Product { ProductID = 1, Name = "P1" };
+            var p2 = new Product { ProductID = 2, Name = "P2" };
 
-            Cart target = new Cart();
+            var target = new Cart();
 
             // Act
             target.AddItem(p1, 1);
             target.AddItem(p2, 1);
             target.AddItem(p1, 10);
-            CartLine[]  results = target.Lines.OrderBy(c => c.Product.ProductID).ToArray();
+            var results = target.Lines.OrderBy(c => c.Product.ProductID).ToArray();
 
             // Assert
             Assert.AreEqual(2, results.Length);
@@ -54,11 +52,11 @@ namespace SportsStore.UnitTests
         public void Can_Remove_Line()
         {
             // Arrange
-            Product p1 = new Product { ProductID = 1, Name = "P1" };
-            Product p2 = new Product { ProductID = 2, Name = "P2" };
-            Product p3 = new Product { ProductID = 3, Name = "P3" };
+            var p1 = new Product { ProductID = 1, Name = "P1" };
+            var p2 = new Product { ProductID = 2, Name = "P2" };
+            var p3 = new Product { ProductID = 3, Name = "P3" };
 
-            Cart target = new Cart();
+            var target = new Cart();
 
             target.AddItem(p1, 1);
             target.AddItem(p2, 3);
@@ -77,16 +75,16 @@ namespace SportsStore.UnitTests
         public void Calculate_Cart_Total()
         {
             // Arrange
-            Product p1 = new Product { ProductID = 1, Name = "P1", Price = 100M };
-            Product p2 = new Product { ProductID = 2, Name = "P2", Price = 50M };
+            var p1 = new Product { ProductID = 1, Name = "P1", Price = 100M };
+            var p2 = new Product { ProductID = 2, Name = "P2", Price = 50M };
 
-            Cart target = new Cart();
+            var target = new Cart();
 
             // Act
             target.AddItem(p1, 1);
             target.AddItem(p2, 1);
             target.AddItem(p1, 3);
-            Decimal     result = target.ComputeTotalValue();
+            var result = target.ComputeTotalValue();
 
             //  Assert
             Assert.AreEqual(450M, result);
@@ -96,10 +94,10 @@ namespace SportsStore.UnitTests
         public void Can_Clear_Contents()
         {
             // Arrange
-            Product p1 = new Product { ProductID = 1, Name = "P1", Price = 100M };
-            Product p2 = new Product { ProductID = 2, Name = "P2", Price = 50M };
+            var p1 = new Product { ProductID = 1, Name = "P1", Price = 100M };
+            var p2 = new Product { ProductID = 2, Name = "P2", Price = 50M };
 
-            Cart target = new Cart();
+            var target = new Cart();
 
             target.AddItem(p1, 1);
             target.AddItem(p2, 1);

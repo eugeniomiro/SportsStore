@@ -1,16 +1,14 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Mvc;
 using SportsStore.WebUI.Infrastructure.Abstract;
 using SportsStore.WebUI.Models;
-using System.Linq;
 
 namespace SportsStore.WebUI.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private  IAuthProvider _authProvider;
+        private readonly IAuthProvider _authProvider;
 
         public AccountController(IAuthProvider prov)
         {
@@ -26,16 +24,22 @@ namespace SportsStore.WebUI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOn(LogOnViewModel model, String returnUrl)
+        public ActionResult LogOn(LogOnViewModel model, string returnUrl)
         {
-            if (ModelState.IsValid) {
-                if (_authProvider.Authenticate(model.UserName, model.Password)) {
+            if (ModelState.IsValid)
+            {
+                if (_authProvider.Authenticate(model.UserName, model.Password))
+                {
                     return Redirect(returnUrl ?? Url.Action("Index", "Admin"));
-                } else {
+                }
+                else
+                {
                     ModelState.AddModelError("", "Incorrect username or password");
                     return View();
                 }
-            } else {
+            }
+            else
+            {
                 return View();
             }
         }
@@ -55,13 +59,16 @@ namespace SportsStore.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 var user = new ApplicationUser() { UserName = model.UserName };
                 var result = _authProvider.RegisterUser(user, model.Password);
-                if (result != null && result.Count() == 0) {
+                if (result != null && result.Count() == 0)
+                {
                     return Redirect("/");
                 }
-                foreach (var error in result) {
+                foreach (var error in result)
+                {
                     ModelState.AddModelError("", error);
                 }
             }

@@ -6,7 +6,6 @@
 
 namespace SportsStore.WebUI.Infrastructure.Abstract
 {
-    using System;
     using System.Collections.Generic;
     using SportsStore.WebUI.Models;
 
@@ -15,8 +14,8 @@ namespace SportsStore.WebUI.Infrastructure.Abstract
     /// </summary>
     public interface IAuthProvider
     {
-        Boolean Authenticate(String username, String password);
+        bool Authenticate(string username, string password);
 
-        IEnumerable<String> RegisterUser(ApplicationUser user, String Password);
+        IEnumerable<string> RegisterUser(ApplicationUser user, string Password);
     }
 }
