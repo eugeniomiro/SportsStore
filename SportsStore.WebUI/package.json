@@ -1,0 +1,19 @@
+{
+  "name": "sportsstore.webui",
+  "version": "0.0.1",
+  "description": "Sports Store Web UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eugeniomiro/SportsStore.git"
+  },
+  "author": "Eugenio Miró",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eugeniomiro/SportsStore/issues"
+  },
+  "homepage": "https://github.com/eugeniomiro/SportsStore#readme"
+}
