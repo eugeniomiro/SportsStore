@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Ninject;
+using SportsStore.DataAccess.EntityFramework.Models;
 using SportsStore.WebUI.Infrastructure.Abstract;
-using SportsStore.WebUI.Models;
 
 namespace SportsStore.WebUI.Infrastructure.Concrete
 {

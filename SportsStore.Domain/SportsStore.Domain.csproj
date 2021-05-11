@@ -75,50 +75,17 @@
   <ItemGroup>
     <Compile Include="Abstract\IOrderProcessor.cs" />
     <Compile Include="Abstract\IProductRepository.cs" />
-    <Compile Include="Concrete\EfDbContext.cs" />
-    <Compile Include="Concrete\EFProductRepository.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
     <Compile Include="Concrete\EmailSettings.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\CartLine.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
-    <Compile Include="Migrations\201210121234147_InitialCreate.cs" />
-    <Compile Include="Migrations\201210121234147_InitialCreate.Designer.cs">
-      <DependentUpon>201210121234147_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201210121251494_StringLengthsAdded.cs" />
-    <Compile Include="Migrations\201210121251494_StringLengthsAdded.Designer.cs">
-      <DependentUpon>201210121251494_StringLengthsAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201210221149063_AddedRestrictionsToProduct.cs" />
-    <Compile Include="Migrations\201210221149063_AddedRestrictionsToProduct.Designer.cs">
-      <DependentUpon>201210221149063_AddedRestrictionsToProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201210221329503_AddedImageToProduct.cs" />
-    <Compile Include="Migrations\201210221329503_AddedImageToProduct.Designer.cs">
-      <DependentUpon>201210221329503_AddedImageToProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201210121234147_InitialCreate.resx">
-      <DependentUpon>201210121234147_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201210121251494_StringLengthsAdded.resx">
-      <DependentUpon>201210121251494_StringLengthsAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201210221149063_AddedRestrictionsToProduct.resx">
-      <DependentUpon>201210221149063_AddedRestrictionsToProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201210221329503_AddedImageToProduct.resx">
-      <DependentUpon>201210221329503_AddedImageToProduct.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

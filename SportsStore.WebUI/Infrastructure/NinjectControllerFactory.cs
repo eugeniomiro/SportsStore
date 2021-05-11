@@ -3,16 +3,17 @@ using System.Configuration;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Ninject;
-using SportsStore.Domain.Abstract;
-using SportsStore.Domain.Concrete;
-using SportsStore.WebUI.Infrastructure.Abstract;
-using SportsStore.WebUI.Infrastructure.Concrete;
-using SportsStore.WebUI.Models;
 
 namespace SportsStore.WebUI.Infrastructure
 {
+    using DataAccess.EntityFramework.Concrete;
+    using DataAccess.EntityFramework.Models;
+    using Domain.Abstract;
+    using Domain.Concrete;
+    using Abstract;
+    using Concrete;
+
     public class NinjectControllerFactory : DefaultControllerFactory
     {
         private readonly IKernel _ninjectKernel;
@@ -40,8 +41,8 @@ namespace SportsStore.WebUI.Infrastructure
 
             _ninjectKernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", settings);
             _ninjectKernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
-            _ninjectKernel.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>()
-                                                               .WithConstructorArgument("context", new ApplicationDbContext());
+            _ninjectKernel.Bind<IUserStore<ApplicationUser>>().To<ApplicationUserStore>()
+                                                               .WithConstructorArgument("context", new EfDbContext());
             _ninjectKernel.Bind<UserManager<ApplicationUser>>().To<UserManager<ApplicationUser>>()
                                                                .InSingletonScope();
 

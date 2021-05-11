@@ -7,7 +7,7 @@
 namespace SportsStore.WebUI.Infrastructure.Abstract
 {
     using System.Collections.Generic;
-    using SportsStore.WebUI.Models;
+    using SportsStore.DataAccess.EntityFramework.Models;
 
     /// <summary>
     /// TODO: Update summary.

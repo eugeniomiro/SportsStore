@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using SportsStore.DataAccess.EntityFramework.Models;
 using SportsStore.WebUI.Infrastructure.Abstract;
 using SportsStore.WebUI.Models;
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace SportsStore.WebUI.Models
+namespace SportsStore.DataAccess.EntityFramework.Models
 {
     public class ApplicationUser : IdentityUser
     {
