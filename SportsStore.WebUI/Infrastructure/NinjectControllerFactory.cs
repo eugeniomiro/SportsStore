@@ -43,7 +43,7 @@ namespace SportsStore.WebUI.Infrastructure
             _ninjectKernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
             _ninjectKernel.Bind<IUserStore<ApplicationUser>>().To<ApplicationUserStore>()
                                                                .WithConstructorArgument("context", new EfDbContext());
-            _ninjectKernel.Bind<UserManager<ApplicationUser>>().To<UserManager<ApplicationUser>>()
+            _ninjectKernel.Bind<UserManager<ApplicationUser>>().To<ApplicationUserManager>()
                                                                .InSingletonScope();
 
             // put additional bindings here

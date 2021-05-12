@@ -60,6 +60,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\ApplicationUserManager.cs" />
     <Compile Include="Models\ApplicationUserStore.cs" />
     <Compile Include="Models\EfDbContext.cs" />
     <Compile Include="Models\EFProductRepository.cs" />
