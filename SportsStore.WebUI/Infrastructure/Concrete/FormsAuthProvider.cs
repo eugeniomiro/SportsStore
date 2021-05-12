@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
-using Ninject;
 
 namespace SportsStore.WebUI.Infrastructure.Concrete
 {
@@ -11,12 +10,14 @@ namespace SportsStore.WebUI.Infrastructure.Concrete
 
     public class FormsAuthProvider : IAuthProvider, IDisposable
     {
-        [Inject]
-        public UserManager<ApplicationUser> UserManager { get; set; }
+        public FormsAuthProvider(UserManager<ApplicationUser> userManager)
+        {
+            _userManager = userManager;
+        }
 
         public bool Authenticate(string username, string password)
         {
-            var user = UserManager.FindAsync(username, password).Result;
+            var user = _userManager.FindAsync(username, password).Result;
             if (user != null)
             {
                 FormsAuthentication.SetAuthCookie(username, false);
@@ -25,11 +26,10 @@ namespace SportsStore.WebUI.Infrastructure.Concrete
             return false;
         }
 
-
         public IEnumerable<string> RegisterUser(ApplicationUser user, string password)
         {
             var errors = new List<string>();
-            var result = UserManager.CreateAsync(user, password).Result;
+            var result = _userManager.CreateAsync(user, password).Result;
             if (!result.Succeeded)
             {
                 errors.AddRange(result.Errors);
@@ -39,10 +39,12 @@ namespace SportsStore.WebUI.Infrastructure.Concrete
 
         public void Dispose()
         {
-            if (UserManager != null)
+            if (_userManager != null)
             {
-                UserManager.Dispose();
+                _userManager.Dispose();
             }
         }
+
+        private readonly UserManager<ApplicationUser> _userManager;
     }
 }
