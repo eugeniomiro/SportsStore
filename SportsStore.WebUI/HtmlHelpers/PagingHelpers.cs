@@ -8,7 +8,7 @@ namespace SportsStore.WebUI.HtmlHelpers
 
     public static class PagingHelpers
     {
-        public static MvcHtmlString PageLinks(this HtmlHelper html,
+        public static MvcHtmlString PageLinks(this HtmlHelper _,
                                               PagingInfo pagingInfo,
                                               Func<int, string> pageUrl)
         {

@@ -19,9 +19,7 @@ namespace SportsStore.DataAccess.EntityFramework.Concrete
     {
         public EfDbContext()
             : base("EfDbContext")
-        {
-
-        }
+        { }
 
         public DbSet<Product> Products { get; set; }
     }

@@ -21,7 +21,10 @@ namespace SportsStore.UnitTests
                 TotalItems = 28,
                 ItemsPerPage = 10
             };
-            string pageUrlDelegate(int i) => "Page" + i;
+            string pageUrlDelegate(int i)
+            {
+                return "Page" + i;
+            }
 
             // Act
             var result = myHelper.PageLinks(pagingInfo, pageUrlDelegate);
