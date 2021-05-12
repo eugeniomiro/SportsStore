@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Text;
 using System.Web.Mvc;
-using SportsStore.WebUI.Models;
 
 namespace SportsStore.WebUI.HtmlHelpers
 {
+    using Models;
+
     public static class PagingHelpers
     {
         public static MvcHtmlString PageLinks(this HtmlHelper html,

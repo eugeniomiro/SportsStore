@@ -1,10 +1,11 @@
 ﻿using System.Web.Mvc;
-using SportsStore.Domain.Entities;
-using SportsStore.WebUI.Binders;
-using SportsStore.WebUI.Infrastructure;
 
 namespace SportsStore.WebUI
 {
+    using Binders;
+    using Domain.Entities;
+    using Infrastructure;
+
     public class BindingConfig
     {
         internal static void RegisterBindings()

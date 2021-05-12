@@ -4,12 +4,13 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Net;
+using System.Net.Mail;
+using System.Text;
+
 namespace SportsStore.Domain.Concrete
 {
-    using System.Net;
-    using System.Net.Mail;
-    using System.Text;
-    using SportsStore.Domain.Abstract;
+    using Abstract;
 
     /// <summary>
     /// TODO: Update summary.

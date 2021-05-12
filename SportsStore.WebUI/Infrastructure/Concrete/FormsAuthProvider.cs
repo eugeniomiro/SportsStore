@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Ninject;
-using SportsStore.DataAccess.EntityFramework.Models;
-using SportsStore.WebUI.Infrastructure.Abstract;
 
 namespace SportsStore.WebUI.Infrastructure.Concrete
 {
+    using Abstract;
+    using DataAccess.EntityFramework.Models;
+
     public class FormsAuthProvider : IAuthProvider, IDisposable
     {
         [Inject]

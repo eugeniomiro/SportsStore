@@ -1,8 +1,9 @@
 ﻿using System.Web.Mvc;
-using SportsStore.Domain.Entities;
 
 namespace SportsStore.WebUI.Binders
 {
+    using Domain.Entities;
+
     public class CartModelBinder : IModelBinder
     {
         private const string SessionKey = "Cart";

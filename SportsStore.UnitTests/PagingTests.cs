@@ -1,11 +1,11 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SportsStore.WebUI.HtmlHelpers;
-using SportsStore.WebUI.Models;
 
 namespace SportsStore.UnitTests
 {
+    using WebUI.HtmlHelpers;
+    using WebUI.Models;
+
     [TestClass]
     public class PagingTests
     {

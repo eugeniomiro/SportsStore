@@ -4,11 +4,11 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Linq;
+
 namespace SportsStore.Domain.Entities
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

@@ -1,7 +1,7 @@
-﻿namespace SportsStore.DataAccess.EntityFramework.Migrations
-{
-    using System.Data.Entity.Migrations;
+﻿using System.Data.Entity.Migrations;
 
+namespace SportsStore.DataAccess.EntityFramework.Migrations
+{
     internal sealed class Configuration : DbMigrationsConfiguration<Concrete.EfDbContext>
     {
         public Configuration()

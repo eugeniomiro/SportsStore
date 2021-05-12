@@ -3,14 +3,15 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using SportsStore.Domain.Abstract;
-using SportsStore.Domain.Entities;
-using SportsStore.WebUI.Controllers;
-using SportsStore.WebUI.Infrastructure.Abstract;
-using SportsStore.WebUI.Models;
 
 namespace SportsStore.UnitTests
 {
+    using Domain.Abstract;
+    using Domain.Entities;
+    using WebUI.Controllers;
+    using WebUI.Infrastructure.Abstract;
+    using WebUI.Models;
+
     [TestClass]
     public class ControllersTests
     {

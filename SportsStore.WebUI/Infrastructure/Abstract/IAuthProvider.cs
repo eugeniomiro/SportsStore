@@ -4,10 +4,11 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace SportsStore.WebUI.Infrastructure.Abstract
 {
-    using System.Collections.Generic;
-    using SportsStore.DataAccess.EntityFramework.Models;
+    using DataAccess.EntityFramework.Models;
 
     /// <summary>
     /// TODO: Update summary.

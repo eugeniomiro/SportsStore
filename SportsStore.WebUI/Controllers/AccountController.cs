@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using SportsStore.DataAccess.EntityFramework.Models;
-using SportsStore.WebUI.Infrastructure.Abstract;
-using SportsStore.WebUI.Models;
 
 namespace SportsStore.WebUI.Controllers
 {
+    using DataAccess.EntityFramework.Models;
+    using Infrastructure.Abstract;
+    using Models;
+
     [Authorize]
     public class AccountController : Controller
     {

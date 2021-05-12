@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------
 
 using System.Linq;
+
 namespace SportsStore.DataAccess.EntityFramework.Concrete
 {
     using Domain.Abstract;

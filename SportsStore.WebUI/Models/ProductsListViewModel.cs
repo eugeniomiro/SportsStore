@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using SportsStore.Domain.Entities;
 
 namespace SportsStore.WebUI.Models
 {
+    using Domain.Entities;
+
     public class ProductsListViewModel
     {
         public IEnumerable<Product> Products { get; set; }

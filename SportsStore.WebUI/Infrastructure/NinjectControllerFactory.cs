@@ -7,12 +7,12 @@ using Ninject;
 
 namespace SportsStore.WebUI.Infrastructure
 {
+    using Abstract;
+    using Concrete;
     using DataAccess.EntityFramework.Concrete;
     using DataAccess.EntityFramework.Models;
     using Domain.Abstract;
     using Domain.Concrete;
-    using Abstract;
-    using Concrete;
 
     public class NinjectControllerFactory : DefaultControllerFactory
     {

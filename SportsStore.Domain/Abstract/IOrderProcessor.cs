@@ -6,7 +6,7 @@
 
 namespace SportsStore.Domain.Abstract
 {
-    using SportsStore.Domain.Entities;
+    using Entities;
 
     /// <summary>
     /// TODO: Update summary.

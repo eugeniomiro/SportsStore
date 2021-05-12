@@ -1,10 +1,11 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using SportsStore.Domain.Abstract;
-using SportsStore.WebUI.Models;
 
 namespace SportsStore.WebUI.Controllers
 {
+    using Domain.Abstract;
+    using Models;
+
     public class ProductController : Controller
     {
         private readonly IProductRepository _repository;

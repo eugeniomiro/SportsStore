@@ -1,7 +1,7 @@
-﻿using SportsStore.Domain.Entities;
-
-namespace SportsStore.WebUI.Models
+﻿namespace SportsStore.WebUI.Models
 {
+    using Domain.Entities;
+
     public class CartIndexViewModel
     {
         public Cart Cart { get; set; }

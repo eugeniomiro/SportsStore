@@ -4,10 +4,10 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace SportsStore.Domain.Entities
 {
-    using System.ComponentModel.DataAnnotations;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

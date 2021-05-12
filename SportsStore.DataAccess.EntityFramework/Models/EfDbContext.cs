@@ -4,12 +4,13 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 namespace SportsStore.DataAccess.EntityFramework.Concrete
 {
-    using System.Data.Entity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Models;
     using Domain.Entities;
+    using Models;
 
     /// <summary>
     /// TODO: Update summary.

@@ -1,9 +1,10 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SportsStore.Domain.Entities;
 
 namespace SportsStore.UnitTests
 {
+    using Domain.Entities;
+
     [TestClass]
     public class CartTest
     {

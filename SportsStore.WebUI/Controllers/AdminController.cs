@@ -1,12 +1,13 @@
 ﻿using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using SportsStore.Domain.Abstract;
-using SportsStore.Domain.Entities;
-using SportsStore.WebUI.Models;
 
 namespace SportsStore.WebUI.Controllers
 {
+    using Domain.Abstract;
+    using Domain.Entities;
+    using Models;
+
     [Authorize]
     public class AdminController : Controller
     {
